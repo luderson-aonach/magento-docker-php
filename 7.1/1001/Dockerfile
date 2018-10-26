@@ -1,4 +1,4 @@
-FROM php:7.2-fpm
+FROM php:7.1-fpm
 
 # Updating and installing some dependences
 # TODO remove suggested packages.
@@ -26,6 +26,7 @@ RUN apt-get update && \
     docker-php-ext-configure gd --with-freetype-dir=/usr/include/ --with-jpeg-dir=/usr/include/ && \
     docker-php-ext-install \
     bcmath \
+    mcrypt \
     pdo_mysql \
     xsl \
     intl \
@@ -41,20 +42,15 @@ RUN apt-get update && \
 # Installing pecl PHP modules
 RUN pecl install \
     xdebug-2.6.0 \
-    imagick-3.4.3 \
-    mcrypt-1.0.1 && \
+    imagick-3.4.3 && \
     docker-php-ext-enable \
     xdebug \
-    imagick \
-    mcrypt
-
+    imagick
+    
 # Installing extra components
-RUN npm install -g grunt-cli && \
-    curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/bin --filename=composer && \
+RUN curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/bin --filename=composer && \
     mkdir -p /var/www/.composer && \
-    usermod -u 1000 www-data && \
-    groupmod -g 1000 www-data && \
-    adduser www-data sudo && \
-    echo 'www-data ALL=(ALL) NOPASSWD: ALL' >> /etc/sudoers && \
+    usermod -u 1001 www-data && \
+    groupmod -g 1001 www-data && \
     chown -R www-data:www-data /var/www/ && \
     chmod -R g+w /var/www/

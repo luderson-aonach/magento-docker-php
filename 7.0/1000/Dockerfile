@@ -1,4 +1,4 @@
-FROM php:7.1-fpm
+FROM php:7.0-fpm
 
 # Updating and installing some dependences
 # TODO remove suggested packages.
@@ -46,14 +46,11 @@ RUN pecl install \
     docker-php-ext-enable \
     xdebug \
     imagick
-    
+
 # Installing extra components
-RUN npm install -g grunt-cli && \
-    curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/bin --filename=composer && \
+RUN curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/bin --filename=composer && \
     mkdir -p /var/www/.composer && \
     usermod -u 1000 www-data && \
     groupmod -g 1000 www-data && \
-    adduser www-data sudo && \
-    echo 'www-data ALL=(ALL) NOPASSWD: ALL' >> /etc/sudoers && \
     chown -R www-data:www-data /var/www/ && \
     chmod -R g+w /var/www/
