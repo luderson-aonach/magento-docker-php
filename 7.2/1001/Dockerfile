@@ -51,7 +51,7 @@ RUN pecl install \
 # Installing extra components
 RUN curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/bin --filename=composer && \
     mkdir -p /var/www/.composer && \
-    usermod -u 1000 www-data && \
-    groupmod -g 1000 www-data && \
+    usermod -u 1001 www-data && \
+    groupmod -g 1001 www-data && \
     chown -R www-data:www-data /var/www/ && \
     chmod -R g+w /var/www/
