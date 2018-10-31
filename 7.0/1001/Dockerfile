@@ -42,10 +42,12 @@ RUN apt-get update && \
 # Installing pecl PHP modules
 RUN pecl install \
     xdebug-2.6.0 \
-    imagick-3.4.3 && \
+    imagick-3.4.3 \
+    geoip-1.1.1 && \
     docker-php-ext-enable \
     xdebug \
-    imagick
+    imagick \
+    geoip
 
 # Installing extra components
 RUN curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/bin --filename=composer && \
