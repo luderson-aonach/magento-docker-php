@@ -15,13 +15,14 @@ RUN apt-get update && \
     zlib1g-dev \
     libmagickwand-dev \
     libmagickcore-dev \
+    libgeoip-dev \
     msmtp \
     git \
     nano \
     gnupg \
     sudo \
     cron && \
-    curl -sL https://deb.nodesource.com/setup_9.x | bash - && \
+    curl -sL https://deb.nodesource.com/setup_8.x | bash - && \
     apt-get install -y nodejs && \
     docker-php-ext-configure gd --with-freetype-dir=/usr/include/ --with-jpeg-dir=/usr/include/ && \
     docker-php-ext-install \
@@ -42,10 +43,12 @@ RUN apt-get update && \
 # Installing pecl PHP modules
 RUN pecl install \
     xdebug-2.6.0 \
-    imagick-3.4.3 && \
+    imagick-3.4.3 \
+    geoip-1.1.1 && \
     docker-php-ext-enable \
     xdebug \
-    imagick
+    imagick \
+    geoip
     
 # Installing extra components
 RUN curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/bin --filename=composer && \

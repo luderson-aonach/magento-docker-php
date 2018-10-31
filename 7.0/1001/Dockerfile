@@ -15,13 +15,14 @@ RUN apt-get update && \
     zlib1g-dev \
     libmagickwand-dev \
     libmagickcore-dev \
+    libgeoip-dev \
     msmtp \
     git \
     nano \
     gnupg \
     sudo \
     cron && \
-    curl -sL https://deb.nodesource.com/setup_9.x | bash - && \
+    curl -sL https://deb.nodesource.com/setup_8.x | bash - && \
     apt-get install -y nodejs && \
     docker-php-ext-configure gd --with-freetype-dir=/usr/include/ --with-jpeg-dir=/usr/include/ && \
     docker-php-ext-install \
