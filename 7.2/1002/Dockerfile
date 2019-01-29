@@ -28,6 +28,7 @@ RUN apt-get update && \
     docker-php-ext-install \
     bcmath \
     pdo_mysql \
+    mysqli \
     xsl \
     intl \
     zip \
@@ -49,6 +50,7 @@ RUN pecl install \
     xdebug \
     imagick \
     mcrypt \
+    mysqli \
     geoip
 
 # Installing extra components
