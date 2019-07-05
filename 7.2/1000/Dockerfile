@@ -21,6 +21,7 @@ RUN apt-get update && \
     nano \
     gnupg \
     sudo \
+    vim \
     cron && \
     curl -sL https://deb.nodesource.com/setup_8.x | bash - && \
     apt-get install -y nodejs && \
@@ -44,12 +45,10 @@ RUN apt-get update && \
 RUN pecl install \
     xdebug-2.6.0 \
     imagick-3.4.3 \
-    mcrypt-1.0.1 \
     geoip-1.1.1 && \
     docker-php-ext-enable \
     xdebug \
     imagick \
-    mcrypt \
     mysqli \
     geoip
 
