@@ -22,7 +22,8 @@ RUN apt-get update && \
     gnupg \
     sudo \
     vim \
-    cron && \
+    cron \
+    libsodium-dev && \
     curl -sL https://deb.nodesource.com/setup_8.x | bash - && \
     apt-get install -y nodejs && \
     docker-php-ext-configure gd --with-freetype-dir=/usr/include/ --with-jpeg-dir=/usr/include/ && \
@@ -45,11 +46,11 @@ RUN apt-get update && \
 RUN pecl install \
     xdebug-2.6.0 \
     imagick-3.4.3 \
-    geoip-1.1.1 && \
+    geoip-1.1.1 \
+    libsodium && \
     docker-php-ext-enable \
     xdebug \
     imagick \
-    mysqli \
     geoip
 
 # Installing extra components
